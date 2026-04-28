@@ -1,0 +1,142 @@
+<div class="relative bg-[#fcfdfc]">
+
+  <nav class="fixed top-0 inset-x-0 z-[60] transition-all duration-500 ease-in-out border-b border-[#e3dcd3] bg-white">
+
+    <div class="container mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+
+      <div routerLinkActive="text-[#9c8372]!" routerLink="/"
+        class="flex items-center gap-2 md:gap-3 group cursor-pointer">
+        <div
+          class="w-8 h-8 md:w-10 md:h-10 bg-[#f4ede6] border border-[#e3dcd3] rounded-full flex items-center justify-center transition-all duration-500 group-hover:bg-[#e3dcd3]">
+          <i class="fa-solid fa-leaf text-[#9c8372] text-sm md:text-base"></i>
+        </div>
+        <span class="text-xl md:text-2xl font-bold text-[#2d2824] tracking-tight">
+          Fresh<span class="text-[#9c8372] font-light">Cart</span>
+        </span>
+      </div>
+
+      <ul class="hidden lg:flex items-center gap-8 xl:gap-12 text-[13px] font-medium tracking-[0.2em] text-[#8c8278]">
+        <li><a routerLinkActive="text-[#9c8372]!" routerLink="/" [routerLinkActiveOptions]="{exact:true}"
+            class="hover:text-[#9c8372] transition-colors uppercase">Home</a></li>
+        <li><a routerLinkActive="text-[#9c8372]!" routerLink="/shop"
+            class="hover:text-[#9c8372] transition-colors uppercase">Shop</a></li>
+
+        <li class="relative group py-2">
+          <a class="flex items-center gap-1 hover:text-[#9c8372] transition-colors uppercase cursor-pointer">
+            Categories
+            <i
+              class="fa-solid fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform duration-300"></i>
+          </a>
+          <ul
+            class="absolute top-full left-0 w-56 bg-white border border-[#e3dcd3] rounded-2xl shadow-xl py-4 mt-2
+                     opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-1 transition-all duration-300 z-50">
+            <li>
+              <a routerLinkActive="text-[#9c8372]!" routerLink="/categories"
+                class="block px-6 py-3 text-[#8c8278] hover:text-[#9c8372] hover:bg-[#f4ede6] transition-all text-xs tracking-widest font-bold">ALL
+                CATEGORIES
+              </a>
+            </li>
+            <li>
+              <a routerLinkActive="text-[#9c8372]!" routerLink="/categories"
+                class="block px-6 py-3 text-[#8c8278] hover:text-[#9c8372] hover:bg-[#f4ede6] transition-all text-xs tracking-widest font-bold">ELECTRONICS
+              </a>
+            </li>
+            <li>
+              <a routerLinkActive="text-[#9c8372]!" routerLink="/categories"
+                class="block px-6 py-3 text-[#8c8278] hover:text-[#9c8372] hover:bg-[#f4ede6] transition-all text-xs tracking-widest font-bold">Women's Fashion
+              </a>
+            </li>
+            <li>
+              <a routerLinkActive="text-[#9c8372]!" routerLink="/categories"
+                class="block px-6 py-3 text-[#8c8278] hover:text-[#9c8372] hover:bg-[#f4ede6] transition-all text-xs tracking-widest font-bold">Men's Fashion
+              </a>
+            </li>
+            <li>
+              <a routerLinkActive="text-[#9c8372]!" routerLink="/categories"
+                class="block px-6 py-3 text-[#8c8278] hover:text-[#9c8372] hover:bg-[#f4ede6] transition-all text-xs tracking-widest font-bold">Beauty & Health
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li><a routerLinkActive="text-[#9c8372]!" routerLink="/brands"
+            class="hover:text-[#9c8372] transition-colors uppercase">Brands</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3 md:gap-6">
+        <div class="flex items-center gap-3 md:gap-5">
+          <button routerLink="/wishlist" routerLinkActive="text-[#9c8372]!"
+            class="relative text-[#8c8278] hover:text-[#9c8372] transition-all cursor-pointer">
+            <i class="fa-regular fa-heart text-lg md:text-xl"></i>
+            <span
+              class="absolute -top-2.5 -right-2.5 bg-[#9c8372] text-white text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">{{ wishListCount() }}</span>
+          </button>
+
+          <button routerLink="/checkout" routerLinkActive="text-[#9c8372]!"
+            class="relative text-[#8c8278] hover:text-[#9c8372] transition-all cursor-pointer">
+            <i class="fa-solid fa-bag-shopping text-lg md:text-xl"></i>
+            <span
+              class="absolute -top-2.5 -right-2.5 bg-[#9c8372] text-white text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">{{
+              cartCount() }}</span>
+          </button>
+        </div>
+
+        @if(isLoggedIn()){
+        <button (click)="signOut()"
+          class="cursor-pointer hidden sm:block bg-transparent border border-[#9c8372] text-[#9c8372] hover:bg-[#9c8372] hover:text-white px-5 md:px-6 py-2 rounded-full text-[10px] md:text-[11px] font-bold tracking-widest transition-all active:scale-95">
+          Sign Out
+        </button>
+        } @else {
+        <div class="flex gap-2">
+          <button routerLink="/register"
+            class="cursor-pointer hidden sm:block bg-[#9c8372] hover:bg-[#826d5d] text-white px-5 md:px-6 py-2 rounded-full text-[10px] md:text-[11px] font-bold tracking-widest transition-all active:scale-95 border border-transparent">
+            Sign Up
+          </button>
+          <button routerLink="/login"
+            class="cursor-pointer hidden sm:block bg-[#9c8372] hover:bg-[#826d5d] text-white px-5 md:px-6 py-2 rounded-full text-[10px] md:text-[11px] font-bold tracking-widest transition-all active:scale-95 border border-transparent">
+            Sign In
+          </button>
+        </div>
+        }
+
+
+        <button (click)="toggleMenu()" class="lg:hidden text-[#8c8278] p-2 z-[70]">
+          <i class="fa-solid" [class.fa-bars-staggered]="!isMenuOpen()" [class.fa-xmark]="isMenuOpen()"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div *ngIf="isMenuOpen()"
+    class="lg:hidden fixed inset-0 z-[55] bg-white/95 backdrop-blur-md pt-28 px-8 transition-all duration-500">
+    <ul class="flex flex-col gap-6 text-sm font-medium text-[#2d2824] uppercase">
+      <li><a (click)="toggleMenu()" routerLinkActive="text-[#9c8372]!" routerLink="/"
+          [routerLinkActiveOptions]="{exact:true}"
+          class="hover:text-[#9c8372] block py-2 border-b border-[#e3dcd3]">Home</a></li>
+      <li><a (click)="toggleMenu()" routerLinkActive="text-[#9c8372]!" routerLink="/shop"
+          class="hover:text-[#9c8372] block py-2 border-b border-[#e3dcd3]">Shop</a></li>
+      <li><a (click)="toggleMenu()" routerLinkActive="text-[#9c8372]!" routerLink="/categories"
+          class="hover:text-[#9c8372] block py-2 border-b border-[#e3dcd3]">Categories</a></li>
+      <li><a (click)="toggleMenu()" routerLinkActive="text-[#9c8372]!" routerLink="/brands"
+          class="hover:text-[#9c8372] block py-2 border-b border-[#e3dcd3]">Brands</a></li>
+      <li class="pt-6 w-100">
+        @if(isLoggedIn()){
+
+        <button routerLinkActive="text-[#9c8372]!" (click)="signOut()"
+          class="w-full mb-5 bg-[#9c8372] text-white py-4 rounded-xl font-bold tracking-widest shadow-lg shadow-[#9c8372]/20">
+          Sign Out
+        </button>
+        }@else {
+        <button routerLinkActive="text-[#9c8372]!"
+          class="w-full mb-5 bg-[#9c8372] text-white py-4 rounded-xl font-bold tracking-widest shadow-lg shadow-[#9c8372]/20">
+          Sign Up
+        </button>
+        <button routerLinkActive="text-[#9c8372]!"
+          class="w-full bg-[#9c8372] text-white py-4 rounded-xl font-bold tracking-widest shadow-lg shadow-[#9c8372]/20">
+          Sign In
+        </button>
+        }
+      </li>
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,162 @@
+<section class="py-8 bg-[#fdfbf7]">
+  <div class="container mx-auto px-4 md:px-8">
+
+    <div class="flex items-center gap-4 mb-10 pb-4 border-b border-[#e3dcd3] ">
+      <div
+        class="w-16 h-16 bg-[#9c8372] rounded-3xl flex items-center justify-center text-white shadow-lg shadow-[#9c8372]/20">
+        <i class="fa-solid fa-cart-shopping text-3xl"></i>
+      </div>
+      <div>
+        <h1 class="text-3xl font-extrabold text-[#2d2824] tracking-tighter">Shopping Cart</h1>
+        <p class="text-[#8c8278] text-sm">You have <span class="text-[#9c8372] font-bold">{{ totalCount() }}
+            items</span> in your cart
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-10 items-start">
+
+      <div class="flex-1 space-y-6 w-full">
+
+        @for (product of productsList(); track $index) {
+        <div
+          class="flex items-center gap-6 bg-white border border-[#e3dcd3] p-6 rounded-[32px] shadow-sm hover:shadow-md transition-all duration-300">
+          <div
+            class="w-32 h-32 bg-[#f4ede6] rounded-2xl flex items-center justify-center overflow-hidden border border-[#e3dcd3]">
+            <img [src]="product.product.imageCover" class="w-full h-full object-contain mix-blend-multiply"
+              [alt]="product.product.title">
+          </div>
+
+          <div class="flex-1 flex items-center justify-between gap-4">
+            <div class="space-y-1">
+              <h3 class="text-xl font-bold text-[#2d2824]">{{ product.product.title }}</h3>
+              <span
+                class="text-[#9c8372] text-[10px] font-bold tracking-[0.2em] uppercase bg-[#9c8372]/5 px-3 py-1 rounded-full border border-[#e3dcd3]">
+                {{product.product.category.name}}
+              </span>
+              <p class="text-2xl font-extrabold text-[#9c8372] mt-2">{{ product.price }} <span
+                  class="text-sm font-bold text-[#8c8278] uppercase ml-0.5">EGP</span></p>
+            </div>
+
+            <div class="flex flex-col items-end gap-16">
+              <div class="flex items-center border border-[#e3dcd3] rounded-xl bg-white shadow-inner">
+                <button (click)="updateProductQuantity(product.product._id,product.count-1)" class="w-10 h-10 text-[#8c8278] hover:text-[#9c8372] transition-colors active:scale-90">
+                  <i class="fa-solid fa-minus text-xs"></i>
+                </button>
+                <span class="w-12 text-center border-none focus:ring-0 text-[#2d2824] font-bold text-sm">{{
+                  product.count }}</span>
+                <button (click)="updateProductQuantity(product.product._id,product.count+1)" class="w-10 h-10 text-[#8c8278] hover:text-[#9c8372] transition-colors active:scale-90">
+                  <i class="fa-solid fa-plus text-xs"></i>
+                </button>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="text-right">
+                  <p class="text-[10px] text-[#8c8278] font-bold tracking-tight">Total</p>
+                  <p class="text-2xl font-extrabold text-[#2d2824]">{{ product.count*product.price }} <span
+                      class="text-xs font-bold text-[#8c8278] uppercase">EGP</span></p>
+                </div>
+                <button (click)="removeCartItem(product._id)"
+                  class="w-10 h-10 border border-[#e3dcd3] bg-white text-[#8c8278] flex items-center justify-center rounded-xl transition-all hover:border-red-100 hover:text-red-500 hover:bg-red-50 active:scale-95 shadow-sm">
+                  <i class="fa-solid fa-trash-can text-base"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        }@empty {
+
+        <!--                                                              Empty Section                                                          -->
+
+        <section class=" bg-[#fdfbf7] min-h-[60vh] flex items-center justify-center">
+          <div class="container mx-auto px-4 text-center">
+
+            <div
+              class="w-32 h-32 bg-[#f4ede6] rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border border-[#e3dcd3]">
+              <i class="fa-solid fa-cart-shopping text-5xl text-[#9c8372]"></i>
+            </div>
+
+            <h2 class="text-3xl font-extrabold text-[#2d2824] mb-4">Your cart is empty</h2>
+            <p class="text-[#8c8278] text-lg mb-8 max-w-sm mx-auto">
+              Looks like you haven't added anything to your cart yet. Start exploring our products and find something
+              you love!
+            </p>
+
+            <a routerLink="/shop"
+              class="inline-flex items-center gap-2 bg-[#9c8372] text-white py-4 px-10 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-[#9c8372]/20 hover:bg-[#826d5d] transition-all active:scale-95">
+              Start Shopping <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+
+          </div>
+        </section>
+
+        }
+
+
+        @if (productsList().length > 0) {
+        <div class="flex items-center justify-between gap-4 pt-6 mt-6 border-t border-[#e3dcd3]">
+          <a routerLink="/"
+            class="cursor-pointer group flex items-center gap-2 text-sm font-bold text-[#9c8372] tracking-wide hover:text-[#826d5d] transition-all">
+            <i class="fa-solid fa-arrow-left text-xs transition-transform group-hover:-translate-x-1"></i> Continue
+            Shopping
+          </a>
+          <button (click)="clearCart()"
+            class="cursor-pointer group flex items-center gap-2 text-sm font-bold text-[#8c8278] tracking-wide hover:text-red-500 transition-all active:scale-95">
+            <i class="fa-solid fa-trash-can text-xs group-hover:scale-110 transition-transform"></i> Clear all items
+          </button>
+
+        </div>
+        }
+      </div>
+      @if (productsList().length > 0) {
+      <div
+        class="w-full lg:w-[380px] bg-white rounded-[32px] p-6 border border-[#e3dcd3] shadow-lg shadow-slate-200/30">
+
+        <div class="space-y-3">
+          <h2 class="text-2xl font-extrabold text-[#2d2824] tracking-tighter pb-6 border-b border-[#e3dcd3]">Order
+            Summary</h2>
+
+          <div class="flex items-center justify-between text-sm">
+            <p class="font-medium text-[#8c8278]">Subtotal ({{ totalCount() }} items)</p>
+            <p class="font-bold text-[#2d2824]">{{ totalCartPrice() }} <span
+                class="text-xs font-bold text-[#8c8278]">EGP</span></p>
+          </div>
+
+          <div class="flex items-center justify-between text-sm">
+            <p class="font-medium text-[#8c8278]">Shipping</p>
+            <p class="font-bold text-[#9c8372]">Free</p>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-[#e3dcd3] pt-3">
+            <p class="text-lg font-bold text-[#2d2824]">Estimated Total</p>
+            <p class="text-3xl font-extrabold text-[#9c8372]">{{ totalCartPrice() }} <span
+                class="text-xs font-bold text-[#8c8278] uppercase tracking-tight">EGP</span></p>
+          </div>
+        </div>
+
+        <div class="space-y-3 mt-6">
+          <button [routerLink]="['/payment',cartDetails]"
+            class="w-full flex items-center justify-center gap-3 bg-[#9c8372] text-white py-4 px-6 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-[#9c8372]/20 hover:bg-[#826d5d] transition-all active:scale-95 group">
+            <i class="fa-solid fa-lock text-sm"></i> Secure Checkout
+          </button>
+
+          <!-- <p class="text-center text-xs text-[#8c8278]">
+            Don't have an account? <a routerLink="/register"
+              class="text-[#9c8372] font-black hover:underline tracking-tight">Sign up</a>
+          </p> -->
+
+          <div class="space-y-3 pt-6 border-t border-[#e3dcd3] text-[11px] text-[#8c8278] leading-relaxed">
+            <p class="flex items-center gap-2"><i class="fa-solid fa-check text-[#9c8372]"></i> Your cart items will be
+              saved</p>
+            <p class="flex items-center gap-2"><i class="fa-solid fa-check text-[#9c8372]"></i> Track your orders easily
+            </p>
+            <p class="flex items-center gap-2"><i class="fa-solid fa-check text-[#9c8372]"></i> Access exclusive member
+              deals</p>
+          </div>
+        </div>
+
+      </div>
+      }
+    </div>
+  </div>
+</section>

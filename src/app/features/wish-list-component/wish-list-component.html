@@ -1,0 +1,99 @@
+<section class="py-16 bg-[#fdfbf7]">
+  <div class="container mx-auto px-6">
+
+    <div class="flex items-center gap-4 mb-10 pb-6 border-b border-[#e3dcd3]">
+      <div class="w-16 h-16 bg-red-50 rounded-3xl flex items-center justify-center text-red-400">
+        <i class="fa-solid fa-heart text-3xl"></i>
+      </div>
+      <div>
+        <h1 class="text-3xl font-extrabold text-[#2d2824]">My Wishlist</h1>
+        <p class="text-[#8c8278]">You have {{ totalCount() }} items saved</p>
+      </div>
+    </div>
+
+    @if (wishList().length>0) {
+    <div class="bg-white border border-[#e3dcd3] rounded-[32px] shadow-sm overflow-hidden">
+      <div class="hidden md:grid grid-cols-6 gap-4 p-6 border-b border-[#e3dcd3] text-sm font-bold text-[#8c8278]">
+        <div class="col-span-3">Product</div>
+        <div class="col-span-1">Price</div>
+        <div class="col-span-1">Status</div>
+        <div class="col-span-1 text-right">Actions</div>
+      </div>
+
+      @for (item of wishList(); track $index) {
+      <div
+        class="grid grid-cols-1 md:grid-cols-6 gap-4 p-6 items-center border-b border-[#e3dcd3] last:border-0 hover:bg-[#fdfbf7] transition-colors">
+
+        <div class="col-span-3 flex items-center gap-4">
+          <div class="w-20 h-20 bg-[#f4ede6] rounded-2xl border border-[#e3dcd3] p-2">
+            <img [src]="item.imageCover" [alt]="item.title" class="w-full h-full object-contain mix-blend-multiply">
+          </div>
+          <div>
+            <h3 class="font-bold text-[#2d2824]">{{ item.title }}</h3>
+            <p class="text-xs text-[#8c8278]">{{ item.category.name }}</p>
+          </div>
+        </div>
+
+        <div class="col-span-1 font-extrabold text-[#2d2824]">
+          {{ item.price }} <span class="text-xs font-bold text-[#8c8278]">EGP</span>
+        </div>
+
+        <div class="col-span-1">
+          @if (item.quantity) {
+          <span
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-bold">
+            <i class="fa-solid fa-circle text-[8px]"></i> In Stock
+          </span>
+          } @else {
+          <span
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-500 text-[10px] font-bold">
+            <i class="fa-solid fa-circle text-[8px]"></i> Out of Stock
+          </span>
+          }
+        </div>
+
+        <div class="col-span-1 flex justify-end gap-2">
+          <button (click)="addToWishList(item._id)"
+            class="bg-[#9c8372] text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-[#826d5d] transition-all active:scale-95">
+            Add to Cart
+          </button>
+          <button (click)="removeCartItem(item._id)"
+            class="w-10 h-10 border border-[#e3dcd3] text-[#8c8278] hover:text-red-500 hover:border-red-100 hover:bg-red-50 rounded-xl transition-all">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div routerLink="/" class="mt-8">
+      <a class="cursor-pointer text-sm font-bold text-[#9c8372] hover:text-[#826d5d] transition-all">
+        <i class="fa-solid fa-arrow-left mr-2"></i> Continue Shopping
+      </a>
+    </div>
+    }@else{
+
+      <!--                                                              Empty Section                                                          -->
+      <section class=" bg-[#fdfbf7] min-h-[60vh] flex items-center justify-center border-none">
+        <div class="container mx-auto px-4 text-center">
+
+          <div
+            class="w-32 h-32 bg-[#f4ede6] rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border border-[#e3dcd3]">
+            <i class="fa-regular fa-heart text-5xl text-[#9c8372]"></i>
+          </div>
+
+          <h2 class="text-3xl font-extrabold text-[#2d2824] mb-4">Your wishlist is empty</h2>
+          <p class="text-[#8c8278] text-lg mb-8 max-w-sm mx-auto">
+            Browse products and save your favorites here.
+          </p>
+
+          <a routerLink="/shop"
+            class="inline-flex items-center gap-2 bg-[#9c8372] text-white py-4 px-10 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-[#9c8372]/20 hover:bg-[#826d5d] transition-all active:scale-95">
+            Browse Products <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+
+        </div>
+      </section>
+    }
+  </div>
+</section>

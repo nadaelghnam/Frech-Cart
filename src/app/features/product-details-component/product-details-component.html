@@ -1,0 +1,159 @@
+@defer (when productDetails()) {
+<div class="container mx-auto px-4 py-12 md:py-16 font-sans bg-[#fdfbf7]">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-start">
+
+    <div class="lg:col-span-5 flex flex-col gap-5">
+      <div
+        class="border border-[#e3dcd3] rounded-3xl p-6 bg-white shadow-sm flex items-center justify-center aspect-square overflow-hidden group">
+        <img [src]="productDetails().imageCover" [alt]="productDetails().title"
+          class="max-w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105">
+      </div>
+
+      <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
+        <button
+          class="border-2 border-[#9c8372] rounded-xl p-1.5 aspect-square bg-white flex items-center justify-center cursor-pointer shadow-sm">
+          <img [src]="productDetails().images[0]" class="max-w-full h-auto object-contain">
+        </button>
+        <button
+          class="border border-[#e3dcd3] hover:border-[#9c8372]/30 rounded-xl p-1.5 aspect-square bg-white flex items-center justify-center cursor-pointer transition-colors shadow-sm">
+          <img [src]="productDetails().images[1]" class="max-w-full h-auto object-contain">
+        </button>
+        <button
+          class="border border-[#e3dcd3] hover:border-[#9c8372]/30 rounded-xl p-1.5 aspect-square bg-white flex items-center justify-center cursor-pointer transition-colors shadow-sm">
+          <img [src]="productDetails().images[2]" class="max-w-full h-auto object-contain">
+        </button>
+        <button
+          class="border border-[#e3dcd3] hover:border-[#9c8372]/30 rounded-xl p-1.5 aspect-square bg-white flex items-center justify-center cursor-pointer transition-colors shadow-sm">
+          <img [src]="productDetails().images[3]" class="max-w-full h-auto object-contain">
+        </button>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7 space-y-7 xl:pl-10">
+      <div class="space-y-3.5">
+        <div class="flex items-center gap-2.5">
+          <span
+            class="text-[#9c8372] text-[10px] font-bold tracking-[0.2em] uppercase bg-[#9c8372]/5 px-3 py-1 rounded-full border border-[#e3dcd3]">
+            {{ productDetails().category.name }}
+          </span>
+          <span
+            class="text-[#8c8278] text-[10px] font-bold tracking-[0.2em] uppercase bg-white px-3 py-1 rounded-full border border-[#e3dcd3]">
+            {{ productDetails().brand }}
+          </span>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#2d2824] tracking-tighter">
+          {{ productDetails().subcategory[0].name }}
+        </h1>
+        <div class="flex items-center gap-2 pt-1">
+          <div class="flex text-amber-400 text-xs">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            <i class="far fa-star text-gray-300"></i>
+          </div>
+          <span class="text-xs text-[#8c8278] font-medium">{{ productDetails().ratingsAverage }} ({{
+            productDetails().ratingsQuantity }} reviews)</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2.5">
+        <p class="text-5xl font-extrabold text-[#2d2824]">{{ productDetails().price }}
+          <span class="text-sm font-bold text-[#8c8278] uppercase ml-0.5">EGP</span>
+        </p>
+
+        @if(productDetails().quantity > 0) {
+        <div
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#9c8372]/5 rounded-full border border-[#e3dcd3] text-[10px] font-bold text-[#9c8372]">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#9c8372] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#9c8372]"></span>
+          </span>
+          In Stock
+        </div>
+        } @else {
+        <div
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 rounded-full border border-red-100 text-[10px] font-bold text-red-500">
+          Out of Stock
+        </div>
+        }
+      </div>
+
+      <p class="text-[#8c8278] text-sm leading-relaxed max-w-xl">
+        <strong class="text-[#2d2824] font-bold">Material: </strong> {{ productDetails().description }}
+      </p>
+
+      <div class="space-y-2.5 pt-2">
+        <label class="text-xs font-bold text-[#8c8278] tracking-wide uppercase">Quantity</label>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center border border-[#e3dcd3] rounded-xl bg-white shadow-inner">
+            <button
+              class="w-10 h-10 text-[#8c8278] hover:text-[#9c8372] transition-colors active:scale-90">
+              <i class="fa-solid fa-minus text-xs"></i>
+            </button>
+            <span class="w-12 text-center border-none focus:ring-0 text-[#2d2824] font-bold text-sm">1</span>
+            <button
+              class="w-10 h-10 text-[#8c8278] hover:text-[#9c8372] transition-colors active:scale-90">
+              <i class="fa-solid fa-plus text-xs"></i>
+            </button>
+          </div>
+          <p class="text-xs text-[#8c8278] font-medium tracking-tight">{{ productDetails().quantity }} available</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between p-6 bg-white border border-[#e3dcd3] rounded-2xl shadow-sm">
+        <p class="text-sm font-bold text-[#8c8278] tracking-tight">Total Price:</p>
+        <p class="text-3xl font-extrabold text-[#9c8372]">{{ productDetails().price }}
+          <span class="text-xs font-bold text-[#8c8278] uppercase ml-0.5 tracking-tight">EGP</span>
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 pt-2">
+        <button (click)="addToCart(productDetails()._id)"
+          class="flex-1 flex items-center justify-center gap-2.5 bg-[#9c8372] text-white py-4 px-6 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-[#9c8372]/20 hover:bg-[#826d5d] transition-all cursor-pointer active:scale-95">
+          <i class="fa-solid fa-cart-shopping text-base"></i> Add to Cart
+        </button>
+        <button
+          class="flex-1 flex items-center justify-center gap-2.5 bg-[#2d2824] text-white py-4 px-6 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-[#2d2824]/20 hover:bg-[#1a1714] transition-all cursor-pointer active:scale-95">
+          <i class="fa-solid fa-bolt text-base text-amber-400"></i> Buy Now
+        </button>
+      </div>
+
+      <div class="flex items-center gap-3 pt-3">
+        <button
+          class="flex-1 flex items-center justify-center gap-2 border border-[#e3dcd3] bg-white text-[#8c8278] py-3.5 px-6 rounded-xl text-sm font-bold transition-all hover:border-[#9c8372]/30 hover:text-[#9c8372] hover:bg-[#9c8372]/5 cursor-pointer active:scale-95 group shadow-sm">
+          <i class="fa-regular fa-heart text-base group-hover:text-red-400 transition-colors"></i> Add to Wishlist
+        </button>
+        <button
+          class="w-14 h-14 border border-[#e3dcd3] bg-white text-[#8c8278] flex items-center justify-center rounded-xl transition-all hover:border-[#9c8372]/30 hover:text-[#9c8372] hover:bg-[#9c8372]/5 cursor-pointer active:scale-95 shadow-sm">
+          <i class="fa-solid fa-share-nodes text-base"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-8 mt-8 border-t border-[#e3dcd3]">
+        <div class="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-[#e3dcd3] shadow-sm">
+          <i class="fa-solid fa-truck text-[#9c8372] text-2xl"></i>
+          <div>
+            <p class="text-xs font-bold text-[#2d2824]">Free Delivery</p>
+            <p class="text-[10px] text-[#8c8278]">Orders over $50</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-[#e3dcd3] shadow-sm">
+          <i class="fa-solid fa-arrows-rotate text-[#9c8372] text-2xl"></i>
+          <div>
+            <p class="text-xs font-bold text-[#2d2824]">30 Days Return</p>
+            <p class="text-[10px] text-[#8c8278]">Money back</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-[#e3dcd3] shadow-sm">
+          <i class="fa-solid fa-shield-halved text-[#9c8372] text-2xl"></i>
+          <div>
+            <p class="text-xs font-bold text-[#2d2824]">Secure Payment</p>
+            <p class="text-[10px] text-[#8c8278]">100% Protected</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}

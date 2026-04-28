@@ -1,0 +1,27 @@
+<section class="bg-[#f4ede6] py-12 mb-10">
+  <div class="container mx-auto px-6">
+    <div class="flex items-center gap-4">
+      <div class="p-4 bg-white rounded-2xl shadow-sm text-[#9c8372]">
+        <i class="fa-solid fa-tags text-3xl"></i>
+      </div>
+      <div>
+        <h1 class="text-4xl font-extrabold text-[#2d2824]">Top Brands</h1>
+        <p class="text-[#8c8278]">Shop from your favorite brands</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container mx-auto px-6 mb-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+
+      @for (item of brandList(); track $index) {
+        <div class="group relative bg-white border border-[#e3dcd3] rounded-3xl p-4 text-center transition-all duration-300 hover:border-[#9c8372] hover:shadow-lg hover:shadow-[#e3dcd3]/50 cursor-pointer">
+          <div class="aspect-square w-full mb-5 flex items-center justify-center relative overflow-hidden rounded-xl transition-all bg-[#f4ede6]">
+            <img [src]="item.image" [alt]="item.name" class=" object-cover rounded-full transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <p (click)="brandDetails(item._id)" class="text-sm font-bold text-[#2d2824] tracking-tight group-hover:text-[#9c8372] transition-colors">{{ item.name }}</p>
+        </div>
+      }
+
+    </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="min-h-screen bg-[#fdfbf7] flex items-center justify-center p-4 md:p-8 font-sans">
+  <div class="max-w-6xl w-full bg-white rounded-[40px] shadow-xl shadow-slate-200/50 overflow-hidden flex flex-col lg:row-reverse lg:flex-row border border-[#e3dcd3]">
+
+    <div class="lg:w-1/2 bg-[#9c8372] p-10 md:p-16 flex flex-col justify-between relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#4a423a]/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+
+      <div class="relative z-10">
+        <h2 class="text-white text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+          Start Your <span class="text-[#e0c099]/70">Fresh</span> Journey With Us.
+        </h2>
+        <p class="text-[#e0d5ce] text-lg opacity-90 max-w-md leading-relaxed">
+          Join FreshCart today and get access to exclusive organic deals, fast delivery, and premium grocery picks.
+        </p>
+      </div>
+
+      <div class="relative z-10 space-y-6 pt-10">
+        <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl backdrop-blur-sm border border-white/10">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#9c8372] shadow-lg">
+            <i class="fa-solid fa-leaf text-xl"></i>
+          </div>
+          <div>
+            <p class="text-white font-bold text-sm">100% Organic</p>
+            <p class="text-[#e0d5ce] text-xs">Direct from local farms</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl backdrop-blur-sm border border-white/10">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#9c8372] shadow-lg">
+            <i class="fa-solid fa-truck-fast text-xl"></i>
+          </div>
+          <div>
+            <p class="text-white font-bold text-sm">Fast Delivery</p>
+            <p class="text-[#e0d5ce] text-xs">Fresh to your door in 24h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:w-1/2 p-8 md:p-12 lg:p-16">
+      <div class="max-w-md mx-auto">
+        <div class="mb-10 text-center lg:text-left">
+          <h1 class="text-3xl font-black text-[#2d2824] mb-2 tracking-tight">Create Account</h1>
+          <p class="text-[#8c8278] text-sm">Welcome to <span class="text-[#9c8372] font-bold">FreshCart</span>. Please enter your details.</p>
+        </div>
+
+        <form class="space-y-5" [formGroup]="registerForm" (ngSubmit)="submitForm()">
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <button type="button" class="flex items-center justify-center gap-3 border border-[#e3dcd3] py-3 rounded-xl hover:bg-[#fdfbf7] transition-all cursor-pointer group shadow-sm">
+              <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
+              <span class="text-xs font-bold text-[#8c8278]">Google</span>
+            </button>
+            <button type="button" class="flex items-center justify-center gap-3 border border-[#e3dcd3] py-3 rounded-xl hover:bg-[#fdfbf7] transition-all cursor-pointer group shadow-sm">
+              <i class="fa-brands fa-facebook text-[#9c8372] text-xl"></i>
+              <span class="text-xs font-bold text-[#8c8278]">Facebook</span>
+            </button>
+          </div>
+
+          <div class="relative flex items-center justify-center mb-8">
+            <div class="w-full h-[1px] bg-[#e3dcd3]"></div>
+            <span class="absolute bg-white px-4 text-[10px] text-[#b8a99c] font-bold tracking-widest uppercase">Or Register with Email</span>
+          </div>
+
+          <div class="space-y-4">
+            <div class="relative group">
+              <label class="text-[10px] font-bold text-[#8c8278] uppercase tracking-widest ml-1 mb-1 block">Full Name</label>
+              <div class="relative">
+                <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-[#b8a99c] group-focus-within:text-[#9c8372] transition-colors"></i>
+                <input formControlName="name" type="text" placeholder="e.g. Ali Ahmed"
+                  class="w-full bg-[#f4ede6] border border-transparent focus:border-[#9c8372] focus:bg-white rounded-xl py-3.5 pl-11 pr-4 text-sm outline-none transition-all shadow-sm placeholder:text-[#b8a99c]">
+              </div>
+            </div>
+            <div class="relative group">
+              <label class="text-[10px] font-bold text-[#8c8278] uppercase tracking-widest ml-1 mb-1 block">Email Address</label>
+              <div class="relative">
+                <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-[#b8a99c] group-focus-within:text-[#9c8372] transition-colors"></i>
+                <input formControlName="email" type="email" placeholder="name@example.com"
+                  class="w-full bg-[#f4ede6] border border-transparent focus:border-[#9c8372] focus:bg-white rounded-xl py-3.5 pl-11 pr-4 text-sm outline-none transition-all shadow-sm placeholder:text-[#b8a99c]">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="relative group">
+                <label class="text-[10px] font-bold text-[#8c8278] uppercase tracking-widest ml-1 mb-1 block">Password</label>
+                <div class="relative">
+                  <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-[#b8a99c] group-focus-within:text-[#9c8372] transition-colors"></i>
+                  <input formControlName="password" type="password" placeholder="••••••••"
+                    class="w-full bg-[#f4ede6] border border-transparent focus:border-[#9c8372] focus:bg-white rounded-xl py-3.5 pl-11 pr-4 text-sm outline-none transition-all shadow-sm placeholder:text-[#b8a99c]">
+                </div>
+              </div>
+              <div class="relative group">
+                <label class="text-[10px] font-bold text-[#8c8278] uppercase tracking-widest ml-1 mb-1 block">Confirm</label>
+                <div class="relative">
+                  <i class="fa-solid fa-shield-check absolute left-4 top-1/2 -translate-y-1/2 text-[#b8a99c] group-focus-within:text-[#9c8372] transition-colors"></i>
+                  <input formControlName="rePassword" type="password" placeholder="••••••••"
+                    class="w-full bg-[#f4ede6] border border-transparent focus:border-[#9c8372] focus:bg-white rounded-xl py-3.5 pl-11 pr-4 text-sm outline-none transition-all shadow-sm placeholder:text-[#b8a99c]">
+                </div>
+              </div>
+            </div>
+
+            <div class="relative group">
+              <label class="text-[10px] font-bold text-[#8c8278] uppercase tracking-widest ml-1 mb-1 block">Phone Number</label>
+              <div class="relative">
+                <i class="fa-solid fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-[#b8a99c] group-focus-within:text-[#9c8372]"></i>
+                <input formControlName="phone" type="tel" placeholder="01xxxxxxxxx"
+                  class="w-full bg-[#f4ede6] border border-transparent focus:border-[#9c8372] focus:bg-white rounded-xl py-3.5 pl-11 pr-4 text-sm outline-none transition-all shadow-sm placeholder:text-[#b8a99c]">
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 pt-2">
+            <input type="checkbox" id="terms" class="w-4 h-4 accent-[#9c8372] cursor-pointer">
+            <label for="terms" class="text-xs text-[#8c8278]">I agree to the <a class="text-[#9c8372] font-bold hover:underline">Terms & Conditions</a></label>
+          </div>
+
+          <button type="submit"
+            class="w-full bg-[#9c8372] text-white py-4 rounded-2xl font-bold text-sm shadow-xl hover:bg-[#826d5d] hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-2 group">
+            Create Account <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+          </button>
+
+          <p class="text-center text-sm text-[#8c8278] pt-4">
+            Already have an account? <a routerLink="/login" class="text-[#9c8372] font-black hover:underline tracking-tight">Sign In</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

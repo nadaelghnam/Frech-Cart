@@ -1,0 +1,30 @@
+<section class="bg-[#fdfbf7] w-full px-16 py-12">
+  <div class="container mx-auto">
+    <div class="flex items-center justify-between mb-10 pb-2 border-b border-[#e3dcd3]">
+      <div class="flex items-center gap-3">
+        <div class="w-1.5 h-8 bg-[#9c8372] rounded-full"></div>
+        <h2 class="text-3xl font-extrabold text-[#2d2824] tracking-tighter">
+          Shop By <span class="text-[#9c8372]">Category</span>
+        </h2>
+      </div>
+
+      <a class="group flex items-center gap-2 text-xs font-bold text-[#9c8372] tracking-wider uppercase hover:text-[#826d5d] transition-colors cursor-pointer">
+        View All Categories
+        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+
+      @for (item of categoriesList(); track $index) {
+        <div class="group relative bg-white border border-[#e3dcd3] rounded-3xl p-3 text-center transition-all duration-300 hover:border-[#9c8372] hover:shadow-lg hover:shadow-[#e3dcd3]/50 cursor-pointer">
+          <div class="aspect-square w-full mb-5 flex items-center justify-center relative overflow-hidden rounded-xl transition-all bg-[#f4ede6]">
+            <img [src]="item.image" [alt]="item.name" class="size-24 object-cover rounded-full transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <p class="text-sm font-bold text-[#2d2824] tracking-tight group-hover:text-[#9c8372] transition-colors">{{ item.name }}</p>
+        </div>
+      }
+
+    </div>
+  </div>
+</section>
